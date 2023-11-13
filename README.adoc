@@ -55,30 +55,29 @@ L'objectif de la sous-commande `usage` est d'afficher un arbre d'utilisation de 
 
 ```sh
 $ cargo run -- usage "/Music/Dead Can Dance"
- 207 MB     /Music/Dead Can Dance
-     79.8 MB    /Music/Dead Can Dance/Into The Labyrinth
-         13.3 MB    /Music/Dead Can Dance/Into The Labyrinth/11 How Fortunate The Man With None.mp3
-         10.2 MB    /Music/Dead Can Dance/Into The Labyrinth/07 Towards The Within.mp3
-         10 MB      /Music/Dead Can Dance/Into The Labyrinth/01 Yulunga (Spirit Dance).mp3
-         9.7 MB     /Music/Dead Can Dance/Into The Labyrinth/09 Spider's Stratagem.mp3
-         9.1 MB     /Music/Dead Can Dance/Into The Labyrinth/02 Ubiquitous Mr Lovegrove.mp3
-         8.2 MB     /Music/Dead Can Dance/Into The Labyrinth/08 Tell Me About The Forest (You Once Called Home).mp3
-         7.9 MB     /Music/Dead Can Dance/Into The Labyrinth/04 Carnival Is Over.mp3
-         4.1 MB     /Music/Dead Can Dance/Into The Labyrinth/03 Wind That Shakes The Barley.mp3
-         3 MB       /Music/Dead Can Dance/Into The Labyrinth/10 Emmeleia.mp3
-         2.7 MB     /Music/Dead Can Dance/Into The Labyrinth/05 Ariadne.mp3
-         1.6 MB     /Music/Dead Can Dance/Into The Labyrinth/06 Saldek.mp3
-         12.5 KB    /Music/Dead Can Dance/Into The Labyrinth/artwork.jpg
+ 207 MiB     /Music/Dead Can Dance
+     79.8 MiB    /Music/Dead Can Dance/Into The Labyrinth
+         13.3 MiB    /Music/Dead Can Dance/Into The Labyrinth/11 How Fortunate The Man With None.mp3
+         10.2 MiB    /Music/Dead Can Dance/Into The Labyrinth/07 Towards The Within.mp3
+         10 MiB      /Music/Dead Can Dance/Into The Labyrinth/01 Yulunga (Spirit Dance).mp3
+         9.7 MiB     /Music/Dead Can Dance/Into The Labyrinth/09 Spider's Stratagem.mp3
+         9.1 MiB     /Music/Dead Can Dance/Into The Labyrinth/02 Ubiquitous Mr Lovegrove.mp3
+         8.2 MiB     /Music/Dead Can Dance/Into The Labyrinth/08 Tell Me About The Forest (You Once Called Home).mp3
+         7.9 MiB     /Music/Dead Can Dance/Into The Labyrinth/04 Carnival Is Over.mp3
+         4.1 MiB     /Music/Dead Can Dance/Into The Labyrinth/03 Wind That Shakes The Barley.mp3
+         3 MiB       /Music/Dead Can Dance/Into The Labyrinth/10 Emmeleia.mp3
+         2.7 MiB     /Music/Dead Can Dance/Into The Labyrinth/05 Ariadne.mp3
+         1.6 MiB     /Music/Dead Can Dance/Into The Labyrinth/06 Saldek.mp3
+         12.5 KiB    /Music/Dead Can Dance/Into The Labyrinth/artwork.jpg
      74.8 MB    /Music/Dead Can Dance/Spirit Chaser
-         14.7 MB    /Music/Dead Can Dance/Spirit Chaser/02 Song Of The Stars.mp3
-         13.5 MB    /Music/Dead Can Dance/Spirit Chaser/03 Indus.mp3
-         11.5 MB    /Music/Dead Can Dance/Spirit Chaser/07 Song Of The Nile.mp3
-         9 MB       /Music/Dead Can Dance/Spirit Chaser/08 Devorzhum.mp3
-         8.9 MB     /Music/Dead Can Dance/Spirit Chaser/06 The Snake And The Moon.mp3
-         8.3 MB     /Music/Dead Can Dance/Spirit Chaser/01 Nierika.mp3
-         7.1 MB     /Music/Dead Can Dance/Spirit Chaser/04 Song Of The Disposessed.mp3
-         1.8 MB     /Music/Dead Can Dance/Spirit Chaser/05 DedicacÃ© OutÃ².mp3
-         12.5 KB    /Music/Dead Can Dance/Spirit Chaser/artwork.jpg
+         14.7 MiB    /Music/Dead Can Dance/Spirit Chaser/02 Song Of The Stars.mp3
+         13.5 MiB    /Music/Dead Can Dance/Spirit Chaser/03 Indus.mp3
+         11.5 MiB    /Music/Dead Can Dance/Spirit Chaser/07 Song Of The Nile.mp3
+         9 MiB       /Music/Dead Can Dance/Spirit Chaser/08 Devorzhum.mp3
+         8.9 MiB     /Music/Dead Can Dance/Spirit Chaser/06 The Snake And The Moon.mp3
+         8.3 MiB     /Music/Dead Can Dance/Spirit Chaser/01 Nierika.mp3
+         7.1 MiB     /Music/Dead Can Dance/Spirit Chaser/04 Song Of The Disposessed.mp3
+         12.5 KiB    /Music/Dead Can Dance/Spirit Chaser/artwork.jpg
       ...
 ```
 
@@ -89,7 +88,7 @@ Size permet de stocker une taille en octets.
 
 * Étudiez le constructeur `Size::new(bytes: u64) -> Self` qui permet d'initialiser un objet size de taille `bytes: u64`.
 * Implémentez le trait `std::ops::Add` pour la classe Size, de manière à pouvoir additionner deux objects de type `Size`.
-* Modifiez l'implémentation du trait `fmt::Display` de manière à afficher la taille dans un format compréhensible par un humain. Par exemple, pour `Size(1024)` vous afficherez `1KB`, pour `Size(2411724)` vous afficherez `2.3MB`.
+* Modifiez l'implémentation du trait `fmt::Display` de manière à afficher la taille dans un format compréhensible par un humain. Par exemple, pour `Size(1024)` vous afficherez `1KiB`, pour `Size(2411724)` vous afficherez `2.3MiB`.
 
 [CAUTION]
 ====
@@ -120,7 +119,7 @@ Un certain nombre de méthodes publiques associées à `FileTree` doivent être 
 * `pub fn new(root: &Path) -> std::io::Result<FileTree>` est un constructeur qui retourne l'arbre de fichiers pour le chemin racine `root`.
 * `pub fn get_root(&self) -> &Path` renvoie le chemin racine de l'arbre.
 * `pub fn get_size(&self, index: &Path) -> Option<Size>` renvoie la taille du chemin passé (uniquement si ce chemin existe dans l'arbre associé).
-* `pub fn get_children(&self) -> Option<&[PathBuf]>` renvoie une tranche contenant les enfants d'un chemin (uniquement si ce chemin est trouvé dans l'arbre).
+* `pub fn get_children(&self, index: &Path) -> Option<&[PathBuf]>` renvoie une tranche contenant les enfants d'un chemin (uniquement si ce chemin est trouvé dans l'arbre).
 * `pub fn files(&self) -> &[PathBuf]` renvoie une tranche contenant tous les fichiers (et uniquement les fichiers) de l'arbre.
 
 [CAUTION]
