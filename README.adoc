@@ -120,7 +120,7 @@ Un certain nombre de méthodes publiques associées à `FileTree` doivent être 
 * `pub fn get_root(&self) -> &Path` renvoie le chemin racine de l'arbre.
 * `pub fn get_size(&self, index: &Path) -> Option<Size>` renvoie la taille du chemin passé (uniquement si ce chemin existe dans l'arbre associé).
 * `pub fn get_children(&self, index: &Path) -> Option<&[PathBuf]>` renvoie une tranche contenant les enfants d'un chemin (uniquement si ce chemin est trouvé dans l'arbre).
-* `pub fn files(&self) -> Vec<PathBuf>` renvoie une tranche contenant tous les fichiers (et uniquement les fichiers) de l'arbre.
+* `pub fn files(&self) -> Vec<PathBuf>` renvoie un vecteur contenant tous les fichiers (et uniquement les fichiers) de l'arbre.
 
 [CAUTION]
 ====
